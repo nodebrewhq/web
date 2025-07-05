@@ -2,8 +2,9 @@
 
 import * as React from "react";
 import Link from "next/link";
-import { Menu, X, ChevronDown, CodeXml } from "lucide-react";
-
+import { Menu, X, ChevronDown } from "lucide-react";
+import Image from "next/image";
+import logoo from '../../assets/logo/logo.png'
 import { siteConfig, type NavItem } from "@/config/site";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -69,16 +70,23 @@ export default function Navbar() {
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 max-w-screen-2xl items-center justify-between">
         <Link href="/" className="flex items-center space-x-2">
-          <CodeXml className="h-6 w-6 text-primary" />
+        
+          <Image
+            src={logoo} 
+            alt="Nodebrew Logo"
+            width={32}
+            height={32}
+            className="h-8 w-auto" 
+          />
           <span className="font-bold font-headline">{siteConfig.name}</span>
         </Link>
 
-        {/* Desktop Navigation */}
+        
         <nav className="hidden md:flex items-center space-x-6">
           {siteConfig.mainNav.map((item) => renderNavItem(item))}
         </nav>
 
-        {/* Mobile Navigation */}
+        
         <div className="md:hidden">
           <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
             <SheetTrigger asChild>
@@ -89,8 +97,14 @@ export default function Navbar() {
             </SheetTrigger>
             <SheetContent side="right" className="w-3/4 sm:w-1/2 bg-background">
               <div className="flex flex-col space-y-4 p-4">
-              <Link href="/" className="flex items-center space-x-2 mb-4" onClick={() => setMobileMenuOpen(false)}>
-                  <CodeXml className="h-6 w-6 text-primary" />
+                <Link href="/" className="flex items-center space-x-2 mb-4" onClick={() => setMobileMenuOpen(false)}>
+                  <Image
+                    src={logoo} 
+                    alt="Nodebrew Logo"
+                    width={32}
+                    height={32}
+                    className="h-8 w-auto"
+                  />
                   <span className="font-bold font-headline">{siteConfig.name}</span>
                 </Link>
                 {siteConfig.mainNav.map((item) => renderNavItem(item, true))}
